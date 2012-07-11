@@ -41,14 +41,14 @@ project:
 - Leiningen
 
     ```clojure
-    [org.cloudhoist/hadoop-crate "0.7.0-alpha.1"]
+    [org.cloudhoist/hadoop-crate "0.7.0-alpha.2"]
     ```
 - Maven
     ```xml
     <dependency>
       <groupId>org.cloudhoist</groupId>
       <artifactId>hadoop-crate</artifactId>
-      <version>0.7.0-alpha.1</version>
+      <version>0.7.0-alpha.2</version>
     </dependency>
     ```
 

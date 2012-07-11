@@ -1,5 +1,9 @@
 # Release Notes
 
+# 0.7.0-alpha.2
+
+- rename library to org.cloudhoist/hadoop (was hadoop-crate)
+
 # 0.7.0-alpha.1
 
 - Switch build infrastructure from maven/sonatype to lein2/clojars.
