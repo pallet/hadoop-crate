@@ -1,5 +1,11 @@
 # Release Notes
 
+# 0.7.0-alpha.1
+
+- Switch build infrastructure from maven/sonatype to lein2/clojars.
+
+- Update doco.
+
 # 0.6.0
 - upgraded pom for pallet 0.6.1, and fixed issue with group creation.
 
