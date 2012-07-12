@@ -15,4 +15,11 @@
                  [prxml "1.3.0"]]
   :profiles {:dev
              {:dependencies
-              [[org.cloudhoist/pallet "0.7.0" :classifier "tests"]]}})
+              [[org.cloudhoist/pallet "0.7.0" :classifier "tests"]]}
+             :pallet-0.6
+             {:dependencies
+              [[org.clojure/clojure "1.2.1"]
+               [org.cloudhoist/pallet "0.6.8"]
+               [org.clojure/tools.macro "0.1.1"]
+               [slingshot "0.5.0"]
+               [org.cloudhoist/pallet "0.6.8" :classifier "tests"]]}})

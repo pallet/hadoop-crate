@@ -1,8 +1,15 @@
 (ns pallet.extensions
-  (:use [clojure.tools.macro :only (name-with-attributes symbol-macrolet)]
-        [slingshot.slingshot :only [throw+]])
+  (:use [clojure.tools.macro :only (name-with-attributes symbol-macrolet)])
   (:require pallet.resource.filesystem-layout
             [clojure.tools.macro :as macro]))
+
+;; pallet 0.6 uses slingshot 0.5.x which is in the slinghshot.core
+;; namespace, whereas 0.7+ uses slingshot 0.10.x which is in the
+;; slingshot.slingshot namespace. Good thing this is not Java!
+(try
+  (use '[slingshot.slingshot :only [throw+]])
+  (catch Exception _
+    (use '[slingshot.core :only [throw+]])))
 
 ;; ### Pallet Extensions
 ;;
