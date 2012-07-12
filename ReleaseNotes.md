@@ -1,4 +1,9 @@
 # Release Notes
+
+# 0.7.0-beta.2
+
+- Fixed showstoppe. This is what happens when you don't do integration tests...
+
 # 0.7.0-beta.1
 
 - Add support for pallet 0.6 + clojure 1.2.x and pallet 0.7 + clojure 1.3+
