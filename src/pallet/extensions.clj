@@ -1,8 +1,8 @@
 (ns pallet.extensions
-  (:use [clojure.contrib.def :only (name-with-attributes)])
+  (:use [clojure.tools.macro :only (name-with-attributes symbol-macrolet)]
+        [slingshot.slingshot :only [throw+]])
   (:require pallet.resource.filesystem-layout
-            [clojure.contrib.condition :as condition]
-            [clojure.contrib.macro-utils :as macro]))
+            [clojure.tools.macro :as macro]))
 
 ;; ### Pallet Extensions
 ;;
@@ -29,7 +29,7 @@
   expressions. Future iterations will include more symbol macro
   bindings."
   [& forms]
-  `(macro/symbol-macrolet
+  `(symbol-macrolet
     [~'when pallet.thread-expr/when->
      ~'for pallet.thread-expr/for->
      ~'let pallet.thread-expr/let->
@@ -63,7 +63,7 @@
   [session form]
   (if (and session (map? session))
     session
-    (condition/raise
+    (throw+
      :type :invalid-session
      :message
      (str

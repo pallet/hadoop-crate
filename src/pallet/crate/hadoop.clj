@@ -29,7 +29,7 @@
             [pallet.script :as script]
             [clojure.contrib.prxml :as prxml]
             [clojure.string :as string]
-            [clojure.contrib.logging :as log]
+            [clojure.tools.logging :as log]
             [pallet.crate.ssh-key :as ssh-key]
             [pallet.crate.java :as java])
   (:import [java.io StringReader StringWriter]
