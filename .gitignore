@@ -1,4 +1,6 @@
-autodoc/**
-*/target/**
-*/logs
+autodoc
+target
+logs
+lib
+.lein*
 #*
