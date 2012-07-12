@@ -351,13 +351,33 @@
     :hadoop.rpc.socket.factory.class.ClientProtocol
     :hadoop.rpc.socket.factory.class.JobSubmissionProtocol})
 
+(defmacro with-overwrite
+  "Executes the body with binding remote-file/force-overwrite to true,
+  thus allowing pallet to overwrite files without complaining about
+  MD5 clashes.
+
+  This is a hack to make overwriting
+  `pallet.action.remote-file/force-overwrite` work in both pallet
+  0.6.x and pallet 0.7+, since this variable was renamed to
+  *force-overwrite*
+
+  It threads the session because it needs to play nice with def-phase-fn..."
+  [session & body]
+  (if (ns-resolve 'pallet.action.remote-file 'force-overwrite)
+    `(with-bindings [remote-file/force-overwrite true]
+       (-> ~session ~@body))
+    `(with-bindings [remote-file/*force-overwrite* true]
+       (-> ~session ~@body))))
+
+
+
 (def-phase-fn config-files
   "Accepts a base directory and a map of [config-filename,
 property-map] pairs, and augments the supplied request to allow for
 the creation of each referenced configuration file within the base
 directory."
   [config-dir properties]
-  (binding [remote-file/force-overwrite true]
+  (with-overwrite
     (for [[filename props] properties]
       (remote-file/remote-file
        (format "%s/%s.xml" config-dir (name filename))
