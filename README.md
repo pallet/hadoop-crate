@@ -41,14 +41,14 @@ project:
 - Leiningen
 
     ```clojure
-    [org.cloudhoist/hadoop "0.7.0-beta.1"]
+    [org.cloudhoist/hadoop "0.7.0-beta.2"]
     ```
 - Maven
     ```xml
     <dependency>
       <groupId>org.cloudhoist</groupId>
       <artifactId>hadoop</artifactId>
-      <version>0.7.0-beta.1</version>
+      <version>0.7.0-beta.2</version>
     </dependency>
     ```
 
