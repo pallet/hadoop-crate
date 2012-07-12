@@ -63,20 +63,20 @@
   [session form]
   (if (and session (map? session))
     session
-    (throw+
-     :type :invalid-session
-     :message
-     (str
-      "Invalid session map in phase.\n"
-      (format "session is %s\n" session)
-      (format "Problem probably caused by subphase:\n  %s\n" form)
-      "Check for non crate functions, improper crate functions, or
-      problems in threading the session map in your phase
-      definition. A crate function is a function that takes a session
-      map and other arguments, and returns a modified session
+    (throw+ {
+             :type :invalid-session
+             :message
+             (str
+              "Invalid session map in phase.\n"
+              (format "session is %s\n" session)
+              (format "Problem probably caused by subphase:\n  %s\n" form)
+              "Check for non crate functions, improper crate
+      functions, or problems in threading the session map in your
+      phase definition. A crate function is a function that takes a
+      session map and other arguments, and returns a modified session
       map. Calls to crate functions are often wrapped in a threading
       macro, -> or pallet.phase/phase-fn, to simplify chaining of the
-      session map argument."))))
+      session map argument.")})))
 
 (defmacro phase-fn
   "Composes a phase function from a sequence of phases by threading an
