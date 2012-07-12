@@ -364,12 +364,10 @@
   It threads the session because it needs to play nice with def-phase-fn..."
   [session & body]
   (if (ns-resolve 'pallet.action.remote-file 'force-overwrite)
-    `(with-bindings [remote-file/force-overwrite true]
+    `(binding [remote-file/force-overwrite true]
        (-> ~session ~@body))
-    `(with-bindings [remote-file/*force-overwrite* true]
+    `(binding [remote-file/*force-overwrite* true]
        (-> ~session ~@body))))
-
-
 
 (def-phase-fn config-files
   "Accepts a base directory and a map of [config-filename,
