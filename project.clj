@@ -1,4 +1,4 @@
-(defproject org.cloudhoist/hadoop "0.7.0-beta.2"
+(defproject org.cloudhoist/hadoop "0.7.0-beta.3-SNAPSHOT"
   :description "A Pallet crate to install Hadoop"
   :url "http://github.com/pallet/hadoop-crate"
   :license {:name "Apache 2.0"
