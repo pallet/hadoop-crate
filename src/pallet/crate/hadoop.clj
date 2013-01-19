@@ -25,6 +25,7 @@
             [pallet.action.file :as file]
             [pallet.action.remote-directory :as remote-directory]
             [pallet.action.remote-file :as remote-file]
+            [pallet.crate.etc-hosts :as etc-hosts]
             [pallet.action.user :as user]
             [pallet.script :as script]
             [clojure.contrib.prxml :as prxml]
@@ -563,3 +564,18 @@ directory."
 (def-phase-fn task-tracker []
   (hadoop-service "tasktracker" "task tracker"))
 
+(def-phase-fn setup-etc-hosts
+  "Adds the ip addresses and host names of all nodes in all the groups in
+  `groups` to the `/etc/hosts` file in this node.
+
+   :private-ip will use the private ip address of the nodes instead of the
+       public one "
+  [groups & {:keys [private-ip] :as options}]
+  (expose-request-as
+   [session]
+   (let [groups (map name groups)
+         node-name (session/target-name session)]
+     (etc-hosts/hostname node-name)
+     (thread/for-> [group groups]
+                   (etc-hosts/hosts-for-group group :private-ip private-ip))
+     (etc-hosts/hosts))))
